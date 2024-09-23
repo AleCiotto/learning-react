@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useTheme } from '../../contexts/theme.context';
 import { useUser } from '../../contexts/user.context';
+import classNames from 'classnames';
 
 const Header = () => {
     const { user, setUser } = useUser();
@@ -11,7 +12,10 @@ const Header = () => {
     }
 
     return (
-        <header className={`${theme == 'dark' ? 'bg-tahiti-800' : 'bg-tahiti-200'} p-3`}>
+        <header className={classNames(`p-3`, {
+            'bg-tahiti-800': theme === 'dark',
+            'bg-tahiti-200': theme !== 'dark'
+        })}>
             <nav className='flex justify-between'>
                 <div className='basis-1/8'>
                     <Link to='/'>
